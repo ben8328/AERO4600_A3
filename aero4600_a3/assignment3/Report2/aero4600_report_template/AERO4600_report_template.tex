@@ -1,18 +1,14 @@
 \documentclass{UoNMCHA}
-% \usepackage[authoryear]{natbib}
+\usepackage[authoryear]{natbib}
 \usepackage{array,booktabs} % For nice tables
 \usepackage{amsmath,amsfonts,amssymb} % For nice maths
 \usepackage{color}
 \usepackage{enumerate}
 \usepackage{listings}
-% \usepackage{subfig}
+\usepackage{subfig}
 \usepackage{hyperref}
 \usepackage[parfill]{parskip}   % For replacing paragraph indenting with a newline instead
-\usepackage{biblatex} %Imports biblatex package
-\addbibresource{references.bib} %Import the bibliography file
 
-\usepackage{graphicx}  % For including images
-\usepackage{subcaption}  % For subfigure support
 % Number equations per section
 \numberwithin{equation}{section}
 
@@ -77,8 +73,8 @@
 
 \firstpage{1}    % Set page number for first page
 \UoNMCHAreportNo{AERO4600} %Report number
-\UoNMCHAyear{2024}   % Year
-\shorttitle{Report - AERO4600 Assignment 3} %For odd pages
+\UoNMCHAyear{2023}   % Year
+\shorttitle{Report - AERO4600 Assignment X} %For odd pages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \title{AERO4600 Automatic Flight Control Systems\\
@@ -88,22 +84,22 @@
 \address[UoNMCHA]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
-Student Number: C3328484 \\
+Student Number: c3328484 \\
 E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3328484@uon.edu.au}}}
 
 \author[UoNMCHA]{Jabez Mehanathan}
 \address[UoNMCHA]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
-Student Number:  \\
-E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{}}}
+Student Number: c3355997 \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3355997@uon.edu.au}}}
 
 \author[UoNMCHA]{Kaitlyn Ashcroft}
 \address[UoNMCHA]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
-Student Number: C3350754  \\
-E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{}}}
+Student Number: c3350754  \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3350754@uon.edu.au}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \maketitle
 \onecolumn
@@ -111,8 +107,7 @@ E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{}}}
 \vspace{-5mm}
 \section*{Abstract}
 \vspace{-3mm}
-This Report examines the lateral dynamics and gust response of an aircraft and builds on prior work  \cite{A1-Report}, focusing on utilizing Matlab System Identification Toolbox as well as simulating aircraft response to gust inputs. The primary lateral modes analysed in this report is the side-slip ($\boldsymbol{\beta}$) and bank angle ($\boldsymbol{\phi}$) of the aircraft, and are evaluated through the influence of aileron/rudder control inputs and gust disturbances. This report also evaluates the impact of sensor noise on the the system identification model and methods of improving the robustness of the system identification process. Additionally, the gust/turbulence was modelled using the Dryden Spectra method to aid in simulating the gust responses, in order to compute the maximum side-slip and bank angle perturbations. These finding contribute to modelling and understanding the aircraft's dynamics and control in the lateral motion. 
-
+This Report examines the lateral dynamics and gust response of an aircraft and builds on prior work  \cite{A1-Report}, focusing on utilizing Matlab System Identification Toolbox as well as simulating aircraft response to gust inputs. The primary lateral modes analysed in this report are the side-slip ($\boldsymbol{\beta}$) and bank angle ($\boldsymbol{\phi}$) of the aircraft, and are evaluated through the influence of aileron/rudder control inputs and gust disturbances. This report also evaluates the impact of sensor noise on the the system identification model and methods of improving the robustness of the system identification process. Additionally, the gust/turbulence was modelled using the Dryden Spectra method to aid in simulating the gust responses, in order to compute the maximum side-slip and bank angle perturbations. These finding contribute to modelling and understanding the aircraft's dynamics and control in the lateral motion. 
 \newpage
 \tableofcontents
 \newpage
@@ -143,6 +138,7 @@ The vertical speed guidance loop is designed to control the aircraft’s ascent 
 
 \section{Q4 -- Design Auto-Throttle Control System}
 
+
 \section{Final Design}
 
 \subsection{Q5 -- Implementation of the control and guidance laws}
@@ -153,12 +149,33 @@ The vertical speed guidance loop is designed to control the aircraft’s ascent 
 
 
 \section{Conclusion}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+\bibliographystyle{harvard}
+\bibliography{egBibtex} % This is the .bib file where the bibliography database is stored
 
-
-\newpage
 \appendix
-
+\newpage
+\section{Example of a Table}\label{app:Table}
+ %
+\begin{table}[h!]
+    \begin{center}\label{tab:MCHAProg}
+        \caption{Bachelor of Engineering Mechatronics First Year Program}\label{tab:notation}
+        {\footnotesize
+            \begin{tabular}{c l l l|}
+                \hline\hline \textbf{1st Year} & & \\
+                Semester & {Course Code} & {Course Name} \\ \hline 
+                1 & ENGG1003 & Introduction to Procedural Programming \\
+                1 & ENGG1500 & Introduction to Professional Engineering\\
+                1 & MATH1110 & Maths for Engineering, Science \& Technology 1 \\
+                1 & MECH1110 & Mechanical Drawing/CAD \& Workshop Practice\\ \hline
+                2 & CIVL1100 & Fundamentals of Engineering Mechanics\\
+                2 & ELEC1310 & Introduction to Electrical Engineering\\
+                2 & MATH1120 & Maths for Engineering, Science \& Technology 2 \\
+                2 & MECH1750 & Engineering Materials I\\ \hline
+            \end{tabular}
+        }
+    \end{center}
+\end{table}
 
 \end{document}
