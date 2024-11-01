@@ -78,17 +78,32 @@
 \firstpage{1}    % Set page number for first page
 \UoNMCHAreportNo{AERO4600} %Report number
 \UoNMCHAyear{2024}   % Year
-\shorttitle{Report - AERO4600 Assignment 1} %For odd pages
+\shorttitle{Report - AERO4600 Assignment 3} %For odd pages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \title{AERO4600 Automatic Flight Control Systems\\
-{\small Assignment 2 | 2024}}
+{\small Assignment 3 | 2024}}
+
 \author[UoNMCHA]{Ben Miller}
 \address[UoNMCHA]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
 Student Number: C3328484 \\
 E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3328484@uon.edu.au}}}
+
+\author[UoNMCHA]{Jabez Mehanathan}
+\address[UoNMCHA]{
+Student of Aerospace Systems Engineering,\\
+The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
+Student Number:  \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{}}}
+
+\author[UoNMCHA]{Kaitlyn Ashcroft}
+\address[UoNMCHA]{
+Student of Aerospace Systems Engineering,\\
+The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
+Student Number:  \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \maketitle
 \onecolumn
@@ -103,3 +118,47 @@ This Report examines the lateral dynamics and gust response of an aircraft and b
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+
+\section{Q1 -- Vertical Speed Transfer Function}
+
+\section{Q2 -- Pitch Rate Autopilot}
+
+\section{Q3 -- Vertical Speed Guidance Loop}
+The vertical speed guidance loop is designed to control the aircraft’s ascent and descent rates by incorporating a pitch rate controller as an inner loop. This loop includes a compensator in the forward leg, which processes the vertical speed error to generate a pitch rate command. The pitch rate command then feeds into the inner loop to modulate the elevator input, allowing the system to adjust vertical speed in response to deviations from the desired reference.
+
+\subsection{Loop Topology}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/Loop Topology -Q3.png}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Aircraft Response to Vertical Speed Command}
+
+\subsection{Pitch Rate Response}
+
+\subsection{Elevator Activity}
+
+\section{Q4 -- Design Auto-Throttle Control System}
+
+\section{Final Design}
+
+\subsection{Q5 -- Implementation of the control and guidance laws}
+
+\subsection{Q6 -- Gust Effectiveness}
+
+\subsection{Q7 -- Commanded Large Vertical Speed}
+
+
+\section{Conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\printbibliography
+
+\newpage
+\appendix
+
+
+\end{document}
