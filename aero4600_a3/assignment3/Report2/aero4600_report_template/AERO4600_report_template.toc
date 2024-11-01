@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Subsection title}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Subsection title}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Subsubsection 1}{4}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Subsubsection 2}{4}{subsubsection.1.2.2}%
+\contentsline {section}{\numberline {2}Core Section}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Mathematics}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Figures}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Lists}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Code listings}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}References and Citations}{9}{section.3}%
+\contentsline {section}{\numberline {4}Conclusion}{10}{section.4}%
+\contentsline {section}{\numberline {A}Example of a Table}{11}{appendix.A}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

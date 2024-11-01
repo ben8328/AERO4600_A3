@@ -1,0 +1,17 @@
+\begin{thebibliography}{3}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Jay(1995)}]{jay1995write}
+Jay, R., 1995. How to write proposals and reports that get results. Pitman.
+
+\bibitem[{Strunk(2007)}]{strunk2007elements}
+Strunk, W., 2007. The elements of style. Penguin.
+
+\bibitem[{Troyka et~al.(1999)Troyka, Hesse, and Strom}]{troyka1999simon}
+Troyka, L.~Q., Hesse, D.~D., Strom, C., 1999. Simon \& Schuster handbook for
+  writers. Prentice Hall.
+
+\end{thebibliography}
