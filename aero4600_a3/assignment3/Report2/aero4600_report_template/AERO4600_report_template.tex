@@ -73,8 +73,8 @@
 
 \firstpage{1}    % Set page number for first page
 \UoNMCHAreportNo{AERO4600} %Report number
-\UoNMCHAyear{2023}   % Year
-\shorttitle{Report - AERO4600 Assignment X} %For odd pages
+\UoNMCHAyear{2024}   % Year
+\shorttitle{Report - AERO4600 Assignment 3} %For odd pages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \title{AERO4600 Automatic Flight Control Systems\\
@@ -128,6 +128,7 @@ The pitch rate command then feeds into the inner loop to modulate the elevator i
 the system to adjust vertical speed in response to deviations from the desired reference.
 
 \subsection{Loop Topology}
+\label{Loop_Topology}
 The complete loop topology of the vertical speed guidance loop is shown in Figure \ref{fig:q3-loop-top}. The
 compensator transforms the vertical speed error ($vs_{ref} - vs$) into a pitch rate command. This command is 
 then processed within the inner loop section ($de2q$), where the transfer functions $G_1$ and $G_2$ are used in 
@@ -187,9 +188,30 @@ The auto-throttle system was to be acheieved with the MIMO loop topology shown i
 This loop was designed to the same specifications as the vertical speed guidance loop, with a vertical speed step input of 500 ft/min. The other constraints could not be implemeted howver due to difficulties in controlling the system. 
 In addition to the vertical speed input there was also an input for u (airspeed).
 \subsection{Primary Control Effects}
+The primary control effects, namely the transfer function of throttle to airspeed (($dt2u$)), and elevator to vertical speed ($de2vs$), are shown in \ref{fig:dt2u} and  \ref{fig:de2vs}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_dt2u_response.png}
+    \caption{Primary Control Effect: Throttle to Airspeed}
+    \label{fig:dt2u}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_de2vs_response.png}
+    \caption{Primary Control Effect: Elevator to Vertical Speed}
+    \label{fig:de2vs}
+\end{figure}
+
+
+
+These effects tend to follow a more sinusoidal pattern, reaching similar magnitudes over the simulation period. This is quite different from the responses found from solely the vertical speed control loop (in \ref{Loop_Topology}).
+This indicates the the controls have more of an effect on the outputs over time, although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop).
 
 
 \subsection{Cross-coupling Control Effects}
+The cross-coupling control effects, namely the transfer function of throttle to vertical speed (($dt2vs$)), and elevator to airspeed ($de2u$), are shown in \ref{fig:dt2vs} and  \ref{fig:de2u}.
 
 \subsection{Elevator and Throttle Response}
 
