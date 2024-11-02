@@ -118,6 +118,8 @@ test here
 
 \section{Q2 -- Pitch Rate Autopilot}
 
+
+\newpage
 \section{Q3 -- Vertical Speed Guidance Loop}
 The vertical speed guidance loop is designed to control the aircraft’s ascent and descent rates 
 by incorporating a pitch rate controller as an inner loop. This loop includes a compensator in 
@@ -126,7 +128,7 @@ The pitch rate command then feeds into the inner loop to modulate the elevator i
 the system to adjust vertical speed in response to deviations from the desired reference.
 
 \subsection{Loop Topology}
-The complete loop topology of the vertical speed guidance loop is shown in figure \ref{fig:q3-loop-top}. The
+The complete loop topology of the vertical speed guidance loop is shown in Figure \ref{fig:q3-loop-top}. The
 compensator transforms the vertical speed error ($vs_{ref} - vs$) into a pitch rate command. This command is 
 then processed within the inner loop section ($de2q$), where the transfer functions $G_1$ and $G_2$ are used in 
 the pitch rate controller to compute the required elevator deflection ($\delta_e$) to achieve the target pitch rate.
@@ -138,11 +140,38 @@ the pitch rate controller to compute the required elevator deflection ($\delta_e
 \end{figure}
 
 \subsection{Aircraft Response to Vertical Speed Command}
+For a 500 ft/min vertical speed command step input, the vertical speed response is analyzed to verify that it meets 
+the performance criteria.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/VS Response -Q3.png}
+    \caption{Vertical Speed Response}
+    \label{fig:q3-vs response}
+\end{figure}
+
+
 
 \subsection{Pitch Rate Response}
+The pitch rate response, following the vertical speed command, is evaluated to confirm that the inner pitch rate 
+control loop accurately tracks the generated pitch rate command.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/Pitch Rate Response -Q3.png}
+    \caption{Pitch Rate Response}
+    \label{fig:q3-pitch rate response}
+\end{figure}
 
 \subsection{Elevator Activity}
+The elevator control activity is analyzed to ensure that control actions remain within acceptable operational limits.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/Elevator Control Activity -Q3.png}
+    \caption{Elevator Control Activity}
+    \label{fig:q3-elevator activity}
+\end{figure}
 
+
+\newpage
 \section{Q4 -- Design Auto-Throttle Control System}
 
 \subsection{MIMO Loop Topology}
@@ -175,25 +204,6 @@ the pitch rate controller to compute the required elevator deflection ($\delta_e
 \appendix
 \newpage
 \section{Example of a Table}\label{app:Table}
- %
-\begin{table}[h!]
-    \begin{center}\label{tab:MCHAProg}
-        \caption{Bachelor of Engineering Mechatronics First Year Program}\label{tab:notation}
-        {\footnotesize
-            \begin{tabular}{c l l l|}
-                \hline\hline \textbf{1st Year} & & \\
-                Semester & {Course Code} & {Course Name} \\ \hline 
-                1 & ENGG1003 & Introduction to Procedural Programming \\
-                1 & ENGG1500 & Introduction to Professional Engineering\\
-                1 & MATH1110 & Maths for Engineering, Science \& Technology 1 \\
-                1 & MECH1110 & Mechanical Drawing/CAD \& Workshop Practice\\ \hline
-                2 & CIVL1100 & Fundamentals of Engineering Mechanics\\
-                2 & ELEC1310 & Introduction to Electrical Engineering\\
-                2 & MATH1120 & Maths for Engineering, Science \& Technology 2 \\
-                2 & MECH1750 & Engineering Materials I\\ \hline
-            \end{tabular}
-        }
-    \end{center}
-\end{table}
+
 
 \end{document}
