@@ -126,12 +126,15 @@ The pitch rate command then feeds into the inner loop to modulate the elevator i
 the system to adjust vertical speed in response to deviations from the desired reference.
 
 \subsection{Loop Topology}
-
+The complete loop topology of the vertical speed guidance loop is shown in figure \ref{fig:q3-loop-top}. The
+compensator transforms the vertical speed error ($vs_{ref} - vs$) into a pitch rate command. This command is 
+then processed within the inner loop section ($de2q$), where the transfer functions $G_1$ and $G_2$ are used in 
+the pitch rate controller to compute the required elevator deflection ($\delta_e$) to achieve the target pitch rate.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=1\linewidth]{Figures/Loop Topology -Q3.png}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{Vertical Speed Guidance Loop Topology}
+    \label{fig:q3-loop-top}
 \end{figure}
 
 \subsection{Aircraft Response to Vertical Speed Command}
