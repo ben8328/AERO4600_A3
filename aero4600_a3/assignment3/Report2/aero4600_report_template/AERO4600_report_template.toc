@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {section}{\numberline {2}Q1 -- Vertical Speed Transfer Function}{4}{section.2}%
+\contentsline {section}{\numberline {3}Q2 -- Pitch Rate Autopilot}{4}{section.3}%
+\contentsline {section}{\numberline {4}Q3 -- Vertical Speed Guidance Loop}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Loop Topology}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Aircraft Response to Vertical Speed Command}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Pitch Rate Response}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Elevator Activity}{6}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Q4 -- Design Auto-Throttle Control System}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}MIMO Loop Topology}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Guidance Loop Topology Specifications}{7}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Primary Control Effects}{8}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Cross-coupling Control Effects}{8}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Elevator and Throttle Response}{8}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Auto-Throttle Effectiveness}{8}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Final Design}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Q5 -- Implementation of the control and guidance laws}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Q6 -- Gust Effectiveness}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Q7 -- Commanded Large Vertical Speed}{8}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}%
+\contentsline {section}{\numberline {A}Example of a Table}{9}{appendix.A}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
