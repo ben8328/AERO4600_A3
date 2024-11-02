@@ -140,9 +140,12 @@ the pitch rate controller to compute the required elevator deflection ($\delta_e
     \label{fig:q3-loop-top}
 \end{figure}
 
+
 \subsection{Aircraft Response to Vertical Speed Command}
-For a 500 ft/min vertical speed command step input, the vertical speed response is analyzed to verify that it meets 
-the performance criteria.
+The vertical speed response, in Figure \ref{fig:q3-vs response}, demonstrates the ability for the system's response to a 
+$500 ft/min$ ($2.54 m/s$) vertical speed step input command. 
+
+
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.7\linewidth]{Figures/VS Response -Q3.png}
@@ -150,6 +153,11 @@ the performance criteria.
     \label{fig:q3-vs response}
 \end{figure}
 
+
+The response shows a rapid rise in vertical speed, reaching $9 m/s$ within the first 2 seconds, followed by a slight overshoot.
+The system then settles towards the target ($8.3 m/s$), acheiving steady state within about 10 seconds. This response meets the 
+desired design criteria, mainting a rise time of about 3 seconds and settling within 10-seconds.With no oscilations and a smooth 
+converence towards the command, and demonstrates the system's stability and damping in response to the vertical speed changes. 
 
 
 \subsection{Pitch Rate Response}
