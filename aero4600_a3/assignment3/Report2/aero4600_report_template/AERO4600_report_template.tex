@@ -15,7 +15,7 @@
 \hypersetup{
 %    bookmarks=true,         % show bookmarks bar?
 %    unicode=false,          % non-Latin characters in AcrobatÕs bookmarks
-%    pdftoolbar=true,        % show AcrobatÕs toolbar?
+%    pdftoolbar=true,        % show AcgitrobatÕs toolbar?
 %    pdfmenubar=true,        % show AcrobatÕs menu?
 %    pdffitwindow=false,     % window fit to page when opened
 %    pdfstartview={FitH},    % fits the width of the page to the window
@@ -115,8 +115,16 @@ This Report examines the lateral dynamics and gust response of an aircraft and b
 \section{Introduction}
 test here
 \section{Q1 -- Vertical Speed Transfer Function}
-
+To assess the feasibility of using the aircraft elevator ($\delta_e$) to directly control the vertical speed ($v_s$),
+the transfer function $G^{v_s}_{\delta_e}$ was determined.
+Where $C =\begin{bmatrix}
+	0& 0& 0 &1 &0
+\end{bmatrix}$, the Transfer Function for $v_s$ was found to be \eqref{eq:de2vs}.
+\begin{equation}\label{eq:de2a4}
+	G_{\delta_e}^{v_s}(s) =\frac{8.57 (s-16.89) (+12.79) (s+0.04162)}{(s^2 + 0.03407s + 0.06989) (s^2 + 4.67s + 10.92)}
+\end{equation}
 \section{Q2 -- Pitch Rate Autopilot}
+To design a pitch rate autopilot which controls 
 
 
 \newpage
