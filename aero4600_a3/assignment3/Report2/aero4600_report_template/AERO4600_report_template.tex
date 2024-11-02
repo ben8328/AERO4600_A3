@@ -173,12 +173,21 @@ The elevator control activity is analyzed to ensure that control actions remain 
 
 \newpage
 \section{Q4 -- Design Auto-Throttle Control System}
+In this section an auto-throttle design was attempted, wherein errors in airspeed would determine throttle command.
 
 \subsection{MIMO Loop Topology}
-
+The auto-throttle system was to be acheieved with the MIMO loop topology shown in Figure \ref{fig:q4-mimo-loop}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4-mimo-loop.png}
+    \caption{MIMO Simulink Loop for Auto-Throttle Design}
+    \label{fig:q4-mimo-loop}
+\end{figure}
 \subsection{Guidance Loop Topology Specifications}
-
+This loop was designed to the same specifications as the vertical speed guidance loop, with a vertical speed step input of 500 ft/min. The other constraints could not be implemeted howver due to difficulties in controlling the system. 
+In addition to the vertical speed input there was also an input for u (airspeed).
 \subsection{Primary Control Effects}
+
 
 \subsection{Cross-coupling Control Effects}
 
