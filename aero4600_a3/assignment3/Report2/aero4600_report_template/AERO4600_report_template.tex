@@ -261,7 +261,7 @@ The auto-throttle system was to be acheieved with the MIMO loop topology shown i
 This loop was designed to the same specifications as the vertical speed guidance loop, with a vertical speed step input of 500 ft/min. The other constraints could not be implemeted howver due to difficulties in controlling the system. 
 In addition to the vertical speed input there was also an input for u (airspeed).
 \subsection{Primary Control Effects}
-The primary control effects, namely the transfer function of throttle to airspeed (($dt2u$)), and elevator to vertical speed ($de2vs$), are shown in \ref{fig:dt2u} and  \ref{fig:de2vs}.
+The primary control effects, namely the transfer function of throttle to airspeed (($dt2u$)), and elevator to vertical speed ($de2vs$), are shown in Figures~\ref{fig:dt2u} and  \ref{fig:de2vs}.
 
 \begin{figure}[ht!]
     \centering
@@ -280,11 +280,48 @@ The primary control effects, namely the transfer function of throttle to airspee
 
 
 These effects tend to follow a more sinusoidal pattern, reaching similar magnitudes over the simulation period. This is quite different from the responses found from solely the vertical speed control loop (in \ref{Loop_Topology}).
-This indicates the the controls have more of an effect on the outputs over time, although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop).
+This indicates the the controls have more of an effect on the outputs over time, although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop). This throttle is more effective in making airspeed changes would be due to its direct affect on this output, coupled with the effects from the elevator control (as opposed to elevator control alone).
+
+The overall output of vertical speed and pitch rate (from both elevator and throttle control) however show a more similar trend to the vertical speed control loop, shown in Figures~\ref{fig:q4_vs_response} and \ref{fig:q4_q_response}, albeit with a longer settling time (i.e., not being controlled in the simulation time).
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_vs_response.png}
+    \caption{Vertical Speed Response (Auto Throttle System)}
+    \label{fig:q4_vs_response}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_q_response.png}
+    \caption{Pitch Rate Response (Auto Throttle System)}
+    \label{fig:q4_q_response}
+\end{figure}
+
+
 
 
 \subsection{Cross-coupling Control Effects}
-The cross-coupling control effects, namely the transfer function of throttle to vertical speed (($dt2vs$)), and elevator to airspeed ($de2u$), are shown in \ref{fig:dt2vs} and  \ref{fig:de2u}.
+The cross-coupling control effects, namely the transfer function of throttle to vertical speed (($dt2vs$)), and elevator to airspeed ($de2u$), are shown in \ref{fig:cc_elevator_effect} and  \ref{fig:cc_throttle_effect}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/cc_throttle_effect.png}
+    \caption{Cross Couple Response (Throttle to Vertical Speed)}
+    \label{fig:cc_elevator_effect}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/cc_elevator_effect.png}
+    \caption{Cross Couple Response (Elevator to Airspeed)}
+    \label{fig:cc_throttle_effect}
+\end{figure}
+
+Again, compared to only the vertical speed control loop, these reponses are sinusoidal, and do not stabilise in the timeframe - showing the complexitities of cross looping.
+
+
+
 
 \subsection{Elevator and Throttle Response}
 
