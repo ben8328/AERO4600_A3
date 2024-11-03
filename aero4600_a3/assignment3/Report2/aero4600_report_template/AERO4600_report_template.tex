@@ -1,5 +1,5 @@
 \documentclass{UoNMCHA}
-\usepackage[authoryear]{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{array,booktabs} % For nice tables
 \usepackage{amsmath,amsfonts,amssymb} % For nice maths
 \usepackage{color}
@@ -124,7 +124,31 @@ performance requirements, providing a reliable solution for maintaining desired 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-test here
+Automatic Flight Control Systems (AFCS) are the key system used in modern aviation, providing stability and control to aircraft, while 
+reducing pilot workload and increasing overall flight safety. AFCS typically incorporate multi-loop control architectures to manage the various 
+degrees of freedom involved in the lateral and longitudinal movements of the aircraft's dynamics. The longitudinal control of an aircraft, which 
+focuses on controlling vertical speed and pitch angle, is used for flight phases such as climb, descent, and level flight.
+
+The foundation of AFCS design relies on control theory principles. According to \cite{stevens2016aircraft}, AFCS are structured around feedback 
+control loops that use sensor data to continuously monitor and adjust aircraft dynamics to ensure the aircrafts stability during flight command 
+inputs. These control loops are constructed to specific flight parameters, such as pitch rate and vertical speed, by typically using 
+Proportional-Integral-Derivative (PID) control, to achieve the desired response. In recent years, advancements in control theory and computational 
+power have further advanced AFCS that can handlle multi-input, multi-output (MIMO) control problems, and aids in managing the interactions between 
+control surfaces and actuators. 
+
+This study aims to design and implement an autopilot system specifically for the longitudinal dynamics of an aircraft. The design process includes 
+the development of a vertical speed guidance loop, integrated with an inner pitch rate controller, and an auto-throttle control loop for airspeed 
+management. The vertial speed loop utilizes a componsator to conver vertial speed error into a pitch rate command, while the inner pitch rate 
+controller provides finer pitch adjustments. The auto-throttle loop requires the system to regulate airspeed while maintaining the desired vertical 
+speed and would need an analysis of the cross-coupling effects of the system.
+
+This study utilizes MATLAB software, specifically using  System Identification Toolbox \cite{MATLAB-SYS-ID}, Control System Toolbox 
+\cite{MATLAB-CONTROL}, and Simulink Toolbox \cite{MATLAB-SIMULINK}, to model, design, and simulate the autopilot system. These tools facilitate the 
+identification of system dynamics and the development of control strategies based on theoretical models, which are then validated through time-domain 
+simulations. As discussed in the course materials by Boyang \citet{lectures}, MATLAB’s System Identification Toolbox is instrumental in deriving 
+accurate models for aircraft dynamics, while the Control System Toolbox aids in designing feedback controllers that meet stability and performance 
+requirements outlined by the scope of this project. 
+
 \section{Q1 -- Vertical Speed Transfer Function}
 To assess the feasibility of using the aircraft elevator ($\delta_e$) to directly control the vertical speed ($v_s$),
 the transfer function $G^{v_s}_{\delta_e}$ was determined.
@@ -172,6 +196,60 @@ The primary function of the elevator is to control the pitch, which influences t
 the lift produced by the wings. When the pitch angle is altered, there is a delayed response as the aircraft's trajectory
 adjusts to the new wing orientation. This is because the resultant lift force must change sufficiently
 to alter to the vertical component of the aircraft's velocity. 
+\\ with no controller: settling time NaN, overshoot Inf,
+
+The Transfer function for elevator deflection to pitch rate $q$ was found to be Equation~\ref{eq:de2q}, with root locus 
+of that in Figure~\ref{fig:de2q}. The step response of the system was unstable, with 'Inf' overshoot and did not settle. 
+Where $C =\begin{bmatrix}
+	0& 0& 1 &0
+\end{bmatrix}$,
+\begin{equation}\label{eq:de2q}
+	G_{\delta_e}^{q}(s) =\frac{-26.397 s (s+1.767) (s+0.08172) }{(s^2 + 0.03407s + 0.06989) (s^2 + 4.67s + 10.92)}
+\end{equation}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.6\linewidth]{Figures/q2a_de2q_rl}
+        \caption{$G_{\delta_e}^{q}(s)$ Bode Plot}
+        \label{fig:de2q_rl}
+    \end{center}
+\end{figure}
+
+In order to design a controller to satisfy a bandwidth of $\omega_{c} = 2-10 rad/s$, noise bandwidth of 20 rad/s,
+overshoot within $2\%$ with settling time of around $3s$, it was determined that that system should
+have damping ratio ($\zeta$) of 0.78 and Phase Margin of approximately 69.\\
+
+A proportional integral derivative (PID) controller, with an additional pole, was implemented.
+The PID parameters were initially estimated and subsequently fine-tuned using the MATLAB 'Control System
+Designer' tool. Thus resulting in the controller in Equation~\ref{eq:k_de2q}.
+
+\begin{equation}\label{eq:k_de2q}
+	C =\frac{-0.13015 (s+7.692) (s+0.5263) }{s(s+ 1.22e-5)}
+\end{equation}
+
+After applying the PID controller \ref{eq:k_de2q}, the system had settling time of $2.7 s$ and overshoot $8\%$. 
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.5\linewidth]{Figures/q2_step}
+        \caption{Step response of Controlled System}
+        \label{fig:q2_step}
+    \end{center}
+\end{figure}
+
+The Bode Plot in Figure~\ref{fig:q2cont_bode} shows the system Phase Margin of 64.5 and frequency 5.74 rad/s, close to the desired requirements.
+While the designed pitch rate autopilot improved the pitch rate control performance, it did not fully meet all
+the specified criteria. The controller achieved desired performance in terms of settling time and Phase Margin, and effectively attenuates noise above 20 rad/s.
+However the response has $5\%$ more overshoot than desired.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.5\linewidth]{Figures/de2q_cont_bode}
+        \caption{Bode Plot of Controlled System}
+        \label{fig:q2cont_bode}
+    \end{center}
+\end{figure}
+
+
 
 \newpage
 \section{Q3 -- Vertical Speed Guidance Loop}
@@ -353,11 +431,40 @@ It was discovered that the vertical speed controller is neccessary for non-errat
 \section{Final Design}
 
 \subsection{Q5 -- Implementation of the control and guidance laws}
+A six degree of freedom (DOF) simulation includes all translational and rotational motions, 
+capturing complex interactions and nonlinearities, unlike the transfer function models which simplify
+the behaviour of the system around a specific point. \\
+In Figure~\ref{fig:q5lin} and Figure~\ref{fig:q5nonlin}, the MIMO controller was represented as a state-space system.
+
+The linear results of Figure~\ref{fig:q5lin} are as expected, !!REF:same as q4!!. The coupling effects
+are highlighted when analysing the individual state responses in state-space form. 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.7\linewidth]{Figures/q5_lin}
+        \caption{6 DOF State-Space System Linear Response}
+        \label{fig:q5lin}
+    \end{center}
+\end{figure}
+
+The nonlinear responses in Figure~\ref{fig:q5nonlin} appear more damped and exhibit less sensitivity to inputs, suggesting that the control 
+law might be effectively compensating for changes. However, it is more plausible that this behavior is due to an incorrect implementation of 
+the state-space model of the system. The variables $u,w, q,$ and $\theta$ all show responses with reduced amplitude. While these differences 
+could be attributed to nonlinear dynamics not accounted for in the linear model, they are more likely the result of inaccuracies in the model 
+implementation.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.7\linewidth]{Figures/q5_nonlin}
+        \caption{6 DOF State-Space System Nonlinear Response}
+        \label{fig:q5nonlin}
+    \end{center}
+\end{figure}
 
 \subsection{Q6 -- Gust Effectiveness}
-
+Disturbances are able to modelled in the six DOF nonlinear simulation.
 \subsection{Q7 -- Commanded Large Vertical Speed}
-
+could be dealt with by implementing filters in the control system to smooth out
+the control commands
+more advanced control system - model predictive control
 
 \section{Conclusion}
 
@@ -365,9 +472,7 @@ It was discovered that the vertical speed controller is neccessary for non-errat
 \bibliographystyle{harvard}
 \bibliography{references} % This is the .bib file where the bibliography database is stored
 
-\appendix
-\newpage
-\section{Example of a Table}\label{app:Table}
+
 
 
 \end{document}
