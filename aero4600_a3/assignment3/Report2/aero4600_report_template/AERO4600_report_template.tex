@@ -459,16 +459,58 @@ implementation.
     \end{center}
 \end{figure}
 
+\newpage
 \subsection{Q6 -- Gust Effectiveness}
-Disturbances are able to modelled in the six DOF nonlinear simulation.
+By simulating gust effects in both linear and nonlinear models, this analysis evaluates the control system's ability to counteract these 
+disturbances and restore the aircraft to its desired flight state. The comparison between linear and nonlinear responses provides insights 
+into the robustness of the control system across different modeling complexities. 
+
+In the linear model simulation (Figure \ref{}), the closed-loop control system shows a strong capability to counteract gust disturbances. 
+The airspeed ($u$) initially experiences a minor drop but quickly stabilizes as the control system compensates for the disturbance. Simiarly 
+the vertical speed ($w$) and the pitch angle ($\theta$) responses show minor deviations.  Vertical velocity initially peaks but settles back 
+to the desired value within a few seconds, while the pitch angle undergoes a small fluctuation before returning to a steady-state position. 
+The linear model's behavior suggests that the control system, is able to resist the external gust effects and is able to maintain the desired 
+flight parameters. 
+
+% \begin{figure}[ht!]
+%     \begin{center}
+%         \includegraphics[width=.7\linewidth]{Figures/q5_nonlin}
+%         \caption{6 DOF State-Space System Nonlinear Response}
+%         \label{fig:q5nonlin}
+%     \end{center}
+% \end{figure}
+
+The nonlinear model simulation (Figure \ref{}) provides a more realistic assessment of the system's gust rejection performance by assessing the 
+real-world aircraft dynamics. In response to the gust disturbance, the closed-loop system in the nonlinear model shows slightly larger transient 
+deviations compared to the linear model. Airspeed ($u$) initially drops more significantly, and vertical velocity ($w$) experiences a sharper peak. 
+The pitch angle ($\theta$) also shows a larger initial fluctuation before stabilizing. Despite these increased responses, the control system manages 
+to counteract the disturbance, returning the variables to near-steady-state conditions after a short duration, meaning that the nonlinear model is 
+robust even when under realistic dynamics conditions even though it experiences a larger overshoot and increased settling time.
+
+% \begin{figure}[ht!]
+%     \begin{center}
+%         \includegraphics[width=.7\linewidth]{Figures/q5_nonlin}
+%         \caption{6 DOF State-Space System Nonlinear Response}
+%         \label{fig:q5nonlin}
+%     \end{center}
+% \end{figure}
+
+In both cases, the control system demonstrates its capacity to reduce gust-induced disturbances, validating its robustness in both simplified 
+and realistic dynamic scenarios, however the nonlinear model's responses indicate that the system needs to accommodate larger 
+deviations and longer recovery times.
+
+
 \subsection{Q7 -- Commanded Large Vertical Speed}
 could be dealt with by implementing filters in the control system to smooth out
 the control commands
 more advanced control system - model predictive control
 
+\newpage
 \section{Conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
 \bibliographystyle{harvard}
 \bibliography{references} % This is the .bib file where the bibliography database is stored
 
