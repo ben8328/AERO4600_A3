@@ -191,15 +191,13 @@ Thus, designing an autopilot using elevator to directly control vertical speed
 would be challenging due to the indirect relationship between elevator input and vertical speed output. 
 \\
 \section{Q2 -- Pitch Rate Autopilot}
-the following is for my understanding - \\
 The primary function of the elevator is to control the pitch, which influences the angle of attack, which then in turn affects
 the lift produced by the wings. When the pitch angle is altered, there is a delayed response as the aircraft's trajectory
 adjusts to the new wing orientation. This is because the resultant lift force must change sufficiently
 to alter to the vertical component of the aircraft's velocity. 
-\\ with no controller: settling time NaN, overshoot Inf,
 
 The Transfer function for elevator deflection to pitch rate $q$ was found to be Equation~\ref{eq:de2q}, with root locus 
-of that in Figure~\ref{fig:de2q}. The step response of the system was unstable, with 'Inf' overshoot and did not settle. 
+of that in Figure~\ref{fig:de2q_rl}. The step response of the system was unstable, with 'Inf' overshoot and did not settle. 
 Where $C =\begin{bmatrix}
 	0& 0& 1 &0
 \end{bmatrix}$,
@@ -450,8 +448,9 @@ capturing complex interactions and nonlinearities, unlike the transfer function 
 the behaviour of the system around a specific point. \\
 In Figure~\ref{fig:q5lin} and Figure~\ref{fig:q5nonlin}, the MIMO controller was represented as a state-space system.
 
-The linear results of Figure~\ref{fig:q5lin} are as expected, similar to the results of the SISO model in Section~\ref{sec:q4}. The coupling effects
-are highlighted when analysing the individual state responses in state-space form. 
+The linear results of Figure~\ref{fig:q5lin} are as expected, similar to the results of the SISO model in Section~\ref{sec:q4}. 
+The coupling effects of the system are highlighted when analysing the individual state responses in state-space form. In response to the 
+commanded 500 ft/min vertical speed control input, the system stabilises after approximately 7 seconds. 
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=.7\linewidth]{Figures/LinearOutputs_NOGUST_figureversion.png}
@@ -520,7 +519,7 @@ is not very robust. Such commands can drastically increase aerodynamic loads, ex
 or aircraft stall.\\
 To address these challenges, a more advanced control strategy could be implemented. Implementing an adaptive 
 control can further enhance the system by dynamically adjusting control gains based on current flight conditions and command 
-magnitudes. This control strategy could replace or augment the existing PID controllers in the MIMO 6 DOF simulation [!!ref].
+magnitudes. This control strategy could replace or augment the existing PID controllers in the MIMO 6 DOF simulation of Section~\ref{sec:q4}.
  A predictive control, such as Model Predictive Control (MPC), predicts future states to adjust control inputs preemptively, enhancing the 
 system's ability to maintain stability by optimising tracking performance and control effort. \\
 
@@ -532,7 +531,7 @@ system's ability to maintain stability by optimising tracking performance and co
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\bibliographystyle{harvard}
+\bibliographystyle{IEEEtranN}
 \bibliography{references} % This is the .bib file where the bibliography database is stored
 
 
