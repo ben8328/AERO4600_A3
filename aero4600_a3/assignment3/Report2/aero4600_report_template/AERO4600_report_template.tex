@@ -360,7 +360,7 @@ The primary control effects, namely the transfer function of throttle to airspee
 These effects tend to follow a more sinusoidal pattern, reaching similar magnitudes over the simulation period. This is quite different from the responses found from solely the vertical speed control loop (in \ref{Loop_Topology}).
 The throttle is more effective in making airspeed changes be due to its direct affect on this output, coupled with the effects from the elevator control,although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop).
 
-The overall output of vertical speed and pitch rate (from both elevator and throttle control) however show a more similar trend to the vertical speed control loop, shown in Figures~\ref{fig:q4_vs_response} and \ref{fig:q4_q_response}, albeit with a longer settling time (i.e., not being controlled in the simulation time). Airspeed will not be compared as it is not explored in the vertical speed control loop. However it is included for completeness (COME BACK TO THIS).
+The overall output of vertical speed and pitch rate (from both elevator and throttle control) however show a more similar trend to the vertical speed control loop, shown in Figures~\ref{fig:q4_vs_response} and \ref{fig:q4_q_response}, albeit with a longer settling time (i.e., not being controlled in the simulation time). Airspeed will not be compared as it is not explored in the vertical speed control loop, however it is included for completeness (\ref{fig:q4_u_response}).
 
 \begin{figure}[ht!]
     \centering
@@ -374,6 +374,13 @@ The overall output of vertical speed and pitch rate (from both elevator and thro
     \includegraphics[width=0.7\linewidth]{Figures/q4_q_response.png}
     \caption{Pitch Rate Response (Auto Throttle System)}
     \label{fig:q4_q_response}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_u_response.png}
+    \caption{Airspeed Response (Auto Throttle System)}
+    \label{fig:q4_u_response}
 \end{figure}
 
 
@@ -405,14 +412,14 @@ The throttle folows a reasonable trend, appearing to begin stabilising at 50 sec
 The elevator seems to be more erratic, with a large initial deflection, and then no change for the simulation period. This may again be due to the cross coupling effects, and the increased complexity of the system.
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.7\linewidth]{Figures/control_elevator_q4.png}
+    \includegraphics[width=0.7\linewidth]{Figures/q4_elevator_nounits.png}
     \caption{Elevator Control Activity (Auto Throttle System)}
     \label{fig:q4_elevator_activity}
 \end{figure}
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.7\linewidth]{Figures/control_throttle_q4.png}
+    \includegraphics[width=0.7\linewidth]{Figures/q4_throttle_nounits.png}
     \caption{Throttle Control Activity (Auto Throttle System)}
     \label{fig:q4_throttle_activity}
 \end{figure}
@@ -447,7 +454,7 @@ The linear results of Figure~\ref{fig:q5lin} are as expected, !!REF:same as q4!!
 are highlighted when analysing the individual state responses in state-space form. 
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=.7\linewidth]{Figures/q5_lin}
+        \includegraphics[width=.7\linewidth]{Figures/LinearOutputs_NOGUST_figureversion.png}
         \caption{6 DOF State-Space System Linear Response}
         \label{fig:q5lin}
     \end{center}
@@ -460,7 +467,7 @@ could be attributed to nonlinear dynamics not accounted for in the linear model,
 implementation.
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[width=.7\linewidth]{Figures/q5_nonlin}
+        \includegraphics[width=.7\linewidth]{Figures/NonLinearOutputs_NOGUST_figureversion.png}
         \caption{6 DOF State-Space System Nonlinear Response}
         \label{fig:q5nonlin}
     \end{center}
