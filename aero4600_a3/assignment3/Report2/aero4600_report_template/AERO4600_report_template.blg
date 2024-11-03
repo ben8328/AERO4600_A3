@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: AERO4600_report_template.aux
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+The style file: harvard.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+Warning--entry type for "lectures" isn't style-file defined
+--line 15 of file references.bib
+Warning--empty note in MATLAB-CONTROL
+Warning--empty note in MATLAB-SIMULINK
+Warning--empty note in MATLAB-SYS-ID
+You've used 5 entries,
+            2825 wiz_defined-function locations,
+            656 strings with 5151 characters,
+and the built_in function-call counts, 1680 in all, are:
+= -- 166
+> -- 60
+< -- 6
++ -- 25
+- -- 18
+* -- 123
+:= -- 329
+add.period$ -- 11
+call.type$ -- 5
+change.case$ -- 32
+chr.to.int$ -- 6
+cite$ -- 8
+duplicate$ -- 74
+empty$ -- 117
+format.name$ -- 27
+if$ -- 320
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 2
+newline$ -- 26
+num.names$ -- 20
+pop$ -- 25
+preamble$ -- 1
+purify$ -- 26
+quote$ -- 0
+skip$ -- 63
+stack$ -- 0
+substring$ -- 57
+swap$ -- 11
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 42
+warning$ -- 3
+while$ -- 16
+width$ -- 0
+write$ -- 57
+(There were 4 warnings)
