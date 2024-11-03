@@ -1,0 +1,348 @@
+\documentclass{UoNMCHA}
+\usepackage[authoryear]{natbib}
+\usepackage{array,booktabs} % For nice tables
+\usepackage{amsmath,amsfonts,amssymb} % For nice maths
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}   % For replacing paragraph indenting with a newline instead
+
+
+
+% Number equations per section
+\numberwithin{equation}{section}
+
+\hypersetup{
+%    bookmarks=true,         % show bookmarks bar?
+%    unicode=false,          % non-Latin characters in AcrobatÕs bookmarks
+%    pdftoolbar=true,        % show AcgitrobatÕs toolbar?
+%    pdfmenubar=true,        % show AcrobatÕs menu?
+%    pdffitwindow=false,     % window fit to page when opened
+%    pdfstartview={FitH},    % fits the width of the page to the window
+%    pdftitle={My title},    % title
+%    pdfauthor={Author},     % author
+%    pdfsubject={Subject},   % subject of the document
+%    pdfcreator={Creator},   % creator of the document
+%    pdfproducer={Producer}, % producer of the document
+%    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+%    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+%    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
+}
+
+\definecolor{MATLABKeyword}{rgb}{0,0,1}
+\definecolor{MATLABComment}{rgb}{0.1328125,0.54296875,0.1328125}
+\definecolor{MATLABString}{rgb}{0.625,0.125,0.9375}
+\lstset{language=Matlab,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{MATLABKeyword},
+    %identifierstyle=,
+    commentstyle=\color{MATLABComment},
+    stringstyle=\color{MATLABString},
+    numberstyle=\tiny,
+    %numbers=left,
+    basewidth=0.5em}
+    
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},
+    % basicstyle=\footnotesize,
+    basicstyle=\scriptsize\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\firstpage{1}    % Set page number for first page
+\UoNMCHAreportNo{AERO4600} %Report number
+\UoNMCHAyear{2024}   % Year
+\shorttitle{Report - AERO4600 Assignment 3} %For odd pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\title{AERO4600 Automatic Flight Control Systems\\
+{\small Assignment 3 | 2024}}
+
+\author[UoNMCHA]{Ben Miller}
+\address[UoNMCHA]{
+Student of Aerospace Systems Engineering,\\
+The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
+Student Number: c3328484 \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3328484@uon.edu.au}}}
+
+\author[UoNMCHA]{Jabez Mehanathan}
+\address[UoNMCHA]{
+Student of Aerospace Systems Engineering,\\
+The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
+Student Number: c3355997 \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3355997@uon.edu.au}}}
+
+\author[UoNMCHA]{Kaitlyn Ashcroft}
+\address[UoNMCHA]{
+Student of Aerospace Systems Engineering,\\
+The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
+Student Number: c3350754  \\
+E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3350754@uon.edu.au}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\onecolumn
+
+\vspace{-5mm}
+\section*{Abstract}
+This project focuses on the design and implementation of an autopilot system for the longitudinal dynamics of an 
+aircraft, with the goal of achieving control and stability over vertical speed and pitch rate. The primary objectives 
+include developing a vertical speed guidance loop, integrated with an inner pitch rate control loop, and an auto-throttle 
+system to regulate airspeed. Through theoretical analysis and simulation, the system’s performance was evaluated based on 
+key criteria, including response time, stability, and robustness to external disturbances. A 6DOF nonlinear simulation was 
+used to validate the control laws, demonstrating the autopilot’s ability to track vertical speed and airspeed commands with 
+minimal overshoot and fast settling times. The system’s response to gust inputs was also assessed to evaluate its 
+disturbance rejection capabilities. The results confirm that the proposed longitudinal autopilot design meets the specified 
+performance requirements, providing a reliable solution for maintaining desired flight paths and stability in the longitudinal plane.
+
+ 
+\newpage
+\tableofcontents
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+test here
+\section{Q1 -- Vertical Speed Transfer Function}
+To assess the feasibility of using the aircraft elevator ($\delta_e$) to directly control the vertical speed ($v_s$),
+the transfer function $G^{v_s}_{\delta_e}$ was determined.
+Where $C =\begin{bmatrix}
+	0& -1& 0 &V_{trim}
+\end{bmatrix}$, the Transfer Function for $v_s$ was found to be \eqref{eq:de2vs}.
+\begin{equation}\label{eq:de2vs}
+	G_{\delta_e}^{v_s}(s) =\frac{8.57 (s-16.89) (+12.79) (s+0.04162)}{(s^2 + 0.03407s + 0.06989) (s^2 + 4.67s + 10.92)}
+\end{equation}
+
+The stability of aircraft's control system can be determined by the location of 
+its poles, shown in Figure~\ref{fig:q1}. Poles can be seen on the right half of the s-plane,
+demonstrating instability. 
+\begin{figure}[h] \label{fig:q1}
+    \centering
+    \subfloat{
+          \includegraphics[width=.4\linewidth]{Figures/q1a_de2vs_rl}
+          \label{fig:q1a}
+    }
+    ~
+    \subfloat{
+          \includegraphics[width=.44\linewidth]{Figures/q1a_de2vs_rl_v2}
+          \label{fig:q1a_rl}
+    }
+    \caption{Root Locus of $G_{\delta_e}^{v_s}(s)$}
+    \label{fig:q1}
+  \end{figure}
+
+Further, when analysing the Bode Plot of $G_{\delta_e}^{v_s}(s)$ in Figure~\ref{fig:q1_bode},
+a resonant peak at a low frequency can be seen, indicating high sensitivity and
+possible instability. The phase response can be lagging at low frequencies. 
+  \begin{figure}[h!]
+    \begin{center}
+        \includegraphics[width=.6\linewidth]{Figures/q1a_de2vs_bode}
+        \caption{$G_{\delta_e}^{v_s}(s)$ Bode Plot}
+        \label{fig:q1_bode}
+    \end{center}
+\end{figure}
+Thus, designing an autopilot using elevator to directly control vertical speed
+would be challenging due to the indirect relationship between elevator input and vertical speed output. 
+\\
+\section{Q2 -- Pitch Rate Autopilot}
+the following is for my understanding - \\
+The primary function of the elevator is to control the pitch, which influences the angle of attack, which then in turn affects
+the lift produced by the wings. When the pitch angle is altered, there is a delayed response as the aircraft's trajectory
+adjusts to the new wing orientation. This is because the resultant lift force must change sufficiently
+to alter to the vertical component of the aircraft's velocity. 
+
+\newpage
+\section{Q3 -- Vertical Speed Guidance Loop}
+The vertical speed guidance loop is designed to control the aircraft’s ascent and descent rates 
+by incorporating a pitch rate controller as an inner loop. This loop includes a compensator in 
+the forward leg, which processes the vertical speed error to generate a pitch rate command. 
+The pitch rate command then feeds into the inner loop to modulate the elevator input, allowing 
+the system to adjust vertical speed in response to deviations from the desired reference.
+
+\subsection{Loop Topology}
+\label{Loop_Topology}
+The complete loop topology of the vertical speed guidance loop is shown in Figure \ref{fig:q3-loop-top}. The
+compensator transforms the vertical speed error ($vs_{ref} - vs$) into a pitch rate command. This command is 
+then processed within the inner loop section ($de2q$), where the transfer functions $G_1$ and $G_2$ are used in 
+the pitch rate controller to compute the required elevator deflection ($\delta_e$) to achieve the target pitch rate.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/Loop Topology -Q3.png}
+    \caption{Vertical Speed Guidance Loop Topology}
+    \label{fig:q3-loop-top}
+\end{figure}
+
+
+\subsection{Aircraft Response to Vertical Speed Command}\label{sec: q3b Vs response}
+The vertical speed response, in Figure \ref{fig:q3-vs response}, demonstrates the ability for the system's response to a 
+$500 ft/min$ ($2.54 m/s$) vertical speed step input command. 
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/VS Response -Q3.png}
+    \caption{Vertical Speed Response}
+    \label{fig:q3-vs response}
+\end{figure}
+
+
+The vertical speed response, shown in Figure 2, demonstrates the system’s performance in tracking a 500 ft/min (approximately 2.54 m/s) 
+vertical speed command step input. The response shows a rapid increase in vertical speed, reaching close to the desired 2.5 m/s target 
+within the first 2 seconds. There is a slight overshoot beyond the target speed, followed by a gradual settling towards the reference 
+value, achieving stability within approximately 10 seconds. This response indicates that the system meets the rise time and settling 
+time requirements, effectively balancing speed of response with controlled damping. The smooth convergence to the command confirms 
+the system's capability to achieve accurate vertical speed tracking.
+
+
+\subsection{Pitch Rate Response}
+The pitch rate response, shown in Figure \ref{fig:q3-pitch rate response}, reflects the performance of the inner pitch rate controller. 
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/Pitch Rate Response -Q3.png}
+    \caption{Pitch Rate Response}
+    \label{fig:q3-pitch rate response}
+\end{figure}
+
+The response showns a peak reaching $16 deg/s$, followed by a quick correction with minor oscillations betfore settling to zero. This 
+peak and correction indicate the controller's rapid adjustment to the pitch rate required to meet the vertical speed command of 
+$500 ft/min$ ($2.54 m/s$), as outlined in Section \ref{sec: q3b Vs response}. These damped oscillations demonstrate the pitch rate 
+controllers stability and responsiveness. 
+
+\subsection{Elevator Activity}
+Figure \ref{fig:q3-elevator activity} displays the control activity of the elevator in response to the inputted vertical speed command.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/Elevator Control Activity -Q3.png}
+    \caption{Elevator Control Activity}
+    \label{fig:q3-elevator activity}
+\end{figure}
+
+The elevator intially deflects sharply to approximately $-2.3 degrees$ as the controller adjusts to acheive vertical speed command, 
+followed by the elevator deflection stabilizing back to zero, demonstrating its minimal effor reuired once the target vertial speed is 
+reached. 
+
+\newpage
+\section{Q4 -- Design Auto-Throttle Control System}
+In this section an auto-throttle design was attempted, wherein errors in airspeed would determine throttle command.
+
+\subsection{MIMO Loop Topology}
+The auto-throttle system was to be acheieved with the MIMO loop topology shown in Figure \ref{fig:q4-mimo-loop}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4-mimo-loop.png}
+    \caption{MIMO Simulink Loop for Auto-Throttle Design}
+    \label{fig:q4-mimo-loop}
+\end{figure}
+\subsection{Guidance Loop Topology Specifications}
+This loop was designed to the same specifications as the vertical speed guidance loop, with a vertical speed step input of 500 ft/min. The other constraints could not be implemeted howver due to difficulties in controlling the system. 
+In addition to the vertical speed input there was also an input for u (airspeed).
+\subsection{Primary Control Effects}
+The primary control effects, namely the transfer function of throttle to airspeed (($dt2u$)), and elevator to vertical speed ($de2vs$), are shown in Figures~\ref{fig:dt2u} and  \ref{fig:de2vs}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_dt2u_response.png}
+    \caption{Primary Control Effect: Throttle to Airspeed}
+    \label{fig:dt2u}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_de2vs_response.png}
+    \caption{Primary Control Effect: Elevator to Vertical Speed}
+    \label{fig:de2vs}
+\end{figure}
+
+
+
+These effects tend to follow a more sinusoidal pattern, reaching similar magnitudes over the simulation period. This is quite different from the responses found from solely the vertical speed control loop (in \ref{Loop_Topology}).
+This indicates the the controls have more of an effect on the outputs over time, although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop). This throttle is more effective in making airspeed changes would be due to its direct affect on this output, coupled with the effects from the elevator control (as opposed to elevator control alone).
+
+The overall output of vertical speed and pitch rate (from both elevator and throttle control) however show a more similar trend to the vertical speed control loop, shown in Figures~\ref{fig:q4_vs_response} and \ref{fig:q4_q_response}, albeit with a longer settling time (i.e., not being controlled in the simulation time).
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_vs_response.png}
+    \caption{Vertical Speed Response (Auto Throttle System)}
+    \label{fig:q4_vs_response}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/q4_q_response.png}
+    \caption{Pitch Rate Response (Auto Throttle System)}
+    \label{fig:q4_q_response}
+\end{figure}
+
+
+
+
+\subsection{Cross-coupling Control Effects}
+The cross-coupling control effects, namely the transfer function of throttle to vertical speed (($dt2vs$)), and elevator to airspeed ($de2u$), are shown in \ref{fig:cc_elevator_effect} and  \ref{fig:cc_throttle_effect}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/cc_throttle_effect.png}
+    \caption{Cross Couple Response (Throttle to Vertical Speed)}
+    \label{fig:cc_elevator_effect}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/cc_elevator_effect.png}
+    \caption{Cross Couple Response (Elevator to Airspeed)}
+    \label{fig:cc_throttle_effect}
+\end{figure}
+
+Again, compared to only the vertical speed control loop, these reponses are sinusoidal, and do not stabilise in the timeframe - showing the complexitities of cross looping.
+
+
+\subsection{Elevator and Throttle Response}
+
+\subsection{Auto-Throttle Effectiveness}
+
+\section{Final Design}
+
+\subsection{Q5 -- Implementation of the control and guidance laws}
+
+\subsection{Q6 -- Gust Effectiveness}
+
+\subsection{Q7 -- Commanded Large Vertical Speed}
+
+
+\section{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{harvard}
+\bibliography{references} % This is the .bib file where the bibliography database is stored
+
+\appendix
+\newpage
+\section{Example of a Table}\label{app:Table}
+
+
+\end{document}
