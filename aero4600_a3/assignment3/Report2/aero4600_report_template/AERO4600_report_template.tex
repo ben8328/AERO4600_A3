@@ -384,11 +384,40 @@ Again, compared to only the vertical speed control loop, these reponses are sinu
 \section{Final Design}
 
 \subsection{Q5 -- Implementation of the control and guidance laws}
+A six degree of freedom (DOF) simulation includes all translational and rotational motions, 
+capturing complex interactions and nonlinearities, unlike the transfer function models which simplify
+the behaviour of the system around a specific point. \\
+In Figure~\ref{fig:q5lin} and Figure~\ref{fig:q5nonlin}, the MIMO controller was represented as a state-space system.
+
+The linear results of Figure~\ref{fig:q5lin} are as expected, !!REF:same as q4!!. The coupling effects
+are highlighted when analysing the individual state responses in state-space form. 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.7\linewidth]{Figures/q5_lin}
+        \caption{6 DOF State-Space System Linear Response}
+        \label{fig:q5lin}
+    \end{center}
+\end{figure}
+
+The nonlinear responses in Figure~\ref{fig:q5nonlin} appear more damped and exhibit less sensitivity to inputs, suggesting that the control 
+law might be effectively compensating for changes. However, it is more plausible that this behavior is due to an incorrect implementation of 
+the state-space model of the system. The variables $u,w, q,$ and $\theta$ all show responses with reduced amplitude. While these differences 
+could be attributed to nonlinear dynamics not accounted for in the linear model, they are more likely the result of inaccuracies in the model 
+implementation.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.7\linewidth]{Figures/q5_nonlin}
+        \caption{6 DOF State-Space System Nonlinear Response}
+        \label{fig:q5nonlin}
+    \end{center}
+\end{figure}
 
 \subsection{Q6 -- Gust Effectiveness}
-
+Disturbances are able to modelled in the six DOF nonlinear simulation.
 \subsection{Q7 -- Commanded Large Vertical Speed}
-
+could be dealt with by implementing filters in the control system to smooth out
+the control commands
+more advanced control system - model predictive control
 
 \section{Conclusion}
 
