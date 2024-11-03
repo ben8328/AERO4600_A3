@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 \usepackage[parfill]{parskip}   % For replacing paragraph indenting with a newline instead
 
+
+
 % Number equations per section
 \numberwithin{equation}{section}
 
@@ -106,8 +108,17 @@ E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3350754@uon.edu.au}}}
 
 \vspace{-5mm}
 \section*{Abstract}
-\vspace{-3mm}
-This Report examines the lateral dynamics and gust response of an aircraft and builds on prior work  \cite{A1-Report}, focusing on utilizing Matlab System Identification Toolbox as well as simulating aircraft response to gust inputs. The primary lateral modes analysed in this report are the side-slip ($\boldsymbol{\beta}$) and bank angle ($\boldsymbol{\phi}$) of the aircraft, and are evaluated through the influence of aileron/rudder control inputs and gust disturbances. This report also evaluates the impact of sensor noise on the the system identification model and methods of improving the robustness of the system identification process. Additionally, the gust/turbulence was modelled using the Dryden Spectra method to aid in simulating the gust responses, in order to compute the maximum side-slip and bank angle perturbations. These finding contribute to modelling and understanding the aircraft's dynamics and control in the lateral motion. 
+This project focuses on the design and implementation of an autopilot system for the longitudinal dynamics of an 
+aircraft, with the goal of achieving control and stability over vertical speed and pitch rate. The primary objectives 
+include developing a vertical speed guidance loop, integrated with an inner pitch rate control loop, and an auto-throttle 
+system to regulate airspeed. Through theoretical analysis and simulation, the system’s performance was evaluated based on 
+key criteria, including response time, stability, and robustness to external disturbances. A 6DOF nonlinear simulation was 
+used to validate the control laws, demonstrating the autopilot’s ability to track vertical speed and airspeed commands with 
+minimal overshoot and fast settling times. The system’s response to gust inputs was also assessed to evaluate its 
+disturbance rejection capabilities. The results confirm that the proposed longitudinal autopilot design meets the specified 
+performance requirements, providing a reliable solution for maintaining desired flight paths and stability in the longitudinal plane.
+
+ 
 \newpage
 \tableofcontents
 \newpage
@@ -292,7 +303,7 @@ The cross-coupling control effects, namely the transfer function of throttle to 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{harvard}
-\bibliography{egBibtex} % This is the .bib file where the bibliography database is stored
+\bibliography{references} % This is the .bib file where the bibliography database is stored
 
 \appendix
 \newpage
