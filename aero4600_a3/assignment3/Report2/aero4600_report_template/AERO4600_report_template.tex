@@ -1,5 +1,5 @@
 \documentclass{UoNMCHA}
-\usepackage[authoryear]{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{array,booktabs} % For nice tables
 \usepackage{amsmath,amsfonts,amssymb} % For nice maths
 \usepackage{color}
@@ -161,6 +161,60 @@ The primary function of the elevator is to control the pitch, which influences t
 the lift produced by the wings. When the pitch angle is altered, there is a delayed response as the aircraft's trajectory
 adjusts to the new wing orientation. This is because the resultant lift force must change sufficiently
 to alter to the vertical component of the aircraft's velocity. 
+\\ with no controller: settling time NaN, overshoot Inf,
+
+The Transfer function for elevator deflection to pitch rate $q$ was found to be Equation~\ref{eq:de2q}, with root locus 
+of that in Figure~\ref{fig:de2q}. The step response of the system was unstable, with 'Inf' overshoot and did not settle. 
+Where $C =\begin{bmatrix}
+	0& 0& 1 &0
+\end{bmatrix}$,
+\begin{equation}\label{eq:de2q}
+	G_{\delta_e}^{q}(s) =\frac{-26.397 s (s+1.767) (s+0.08172) }{(s^2 + 0.03407s + 0.06989) (s^2 + 4.67s + 10.92)}
+\end{equation}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.6\linewidth]{Figures/q2a_de2q_rl}
+        \caption{$G_{\delta_e}^{q}(s)$ Bode Plot}
+        \label{fig:de2q_rl}
+    \end{center}
+\end{figure}
+
+In order to design a controller to satisfy a bandwidth of $\omega_{c} = 2-10 rad/s$, noise bandwidth of 20 rad/s,
+overshoot within $2\%$ with settling time of around $3s$, it was determined that that system should
+have damping ratio ($\zeta$) of 0.78 and Phase Margin of approximately 69.\\
+
+A proportional integral derivative (PID) controller, with an additional pole, was implemented.
+The PID parameters were initially estimated and subsequently fine-tuned using the MATLAB 'Control System
+Designer' tool. Thus resulting in the controller in Equation~\ref{eq:k_de2q}.
+
+\begin{equation}\label{eq:k_de2q}
+	C =\frac{-0.13015 (s+7.692) (s+0.5263) }{s(s+ 1.22e-5)}
+\end{equation}
+
+After applying the PID controller \ref{eq:k_de2q}, the system had settling time of $2.7 s$ and overshoot $8\%$. 
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.5\linewidth]{Figures/q2_step}
+        \caption{Step response of Controlled System}
+        \label{fig:q2_step}
+    \end{center}
+\end{figure}
+
+The Bode Plot in Figure~\ref{fig:q2cont_bode} shows the system Phase Margin of 64.5 and frequency 5.74 rad/s, close to the desired requirements.
+While the designed pitch rate autopilot improved the pitch rate control performance, it did not fully meet all
+the specified criteria. The controller achieved desired performance in terms of settling time and Phase Margin, and effectively attenuates noise above 20 rad/s.
+However the response has $5\%$ more overshoot than desired.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=.5\linewidth]{Figures/de2q_cont_bode}
+        \caption{Bode Plot of Controlled System}
+        \label{fig:q2cont_bode}
+    \end{center}
+\end{figure}
+
+
 
 \newpage
 \section{Q3 -- Vertical Speed Guidance Loop}
