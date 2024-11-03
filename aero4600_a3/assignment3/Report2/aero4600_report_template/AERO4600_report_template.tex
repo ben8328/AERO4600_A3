@@ -501,9 +501,16 @@ deviations and longer recovery times.
 
 
 \subsection{Q7 -- Commanded Large Vertical Speed}
-could be dealt with by implementing filters in the control system to smooth out
-the control commands
-more advanced control system - model predictive control
+Commanding a large vertical speed input in the aircraft would introduce a number of challenges as the aircraft's system control 
+is not very robust. Such commands can drastically increase aerodynamic loads, exacerbating existing instabilities and leading to dangerous oscillations 
+or aircraft stall.\\
+To address these challenges, a more advanced control strategy could be implemented. Implementing an adaptive 
+control can further enhance the system by dynamically adjusting control gains based on current flight conditions and command 
+magnitudes. This control strategy could replace or augment the existing PID controllers in the MIMO 6 DOF simulation [!!ref].
+ A predictive control, such as Model Predictive Control (MPC), predicts future states to adjust control inputs preemptively, enhancing the 
+system's ability to maintain stability by optimising tracking performance and control effort. \\
+
+
 
 \newpage
 \section{Conclusion}
