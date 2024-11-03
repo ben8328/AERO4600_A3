@@ -124,7 +124,31 @@ performance requirements, providing a reliable solution for maintaining desired 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-test here
+Automatic Flight Control Systems (AFCS) are the key system used in modern aviation, providing stability and control to aircraft, while 
+reducing pilot workload and increasing overall flight safety. AFCS typically incorporate multi-loop control architectures to manage the various 
+degrees of freedom involved in the lateral and longitudinal movements of the aircraft's dynamics. The longitudinal control of an aircraft, which 
+focuses on controlling vertical speed and pitch angle, is used for flight phases such as climb, descent, and level flight.
+
+The foundation of AFCS design relies on control theory principles. According to \cite{stevens2016aircraft}, AFCS are structured around feedback 
+control loops that use sensor data to continuously monitor and adjust aircraft dynamics to ensure the aircrafts stability during flight command 
+inputs. These control loops are constructed to specific flight parameters, such as pitch rate and vertical speed, by typically using 
+Proportional-Integral-Derivative (PID) control, to achieve the desired response. In recent years, advancements in control theory and computational 
+power have further advanced AFCS that can handlle multi-input, multi-output (MIMO) control problems, and aids in managing the interactions between 
+control surfaces and actuators. 
+
+This study aims to design and implement an autopilot system specifically for the longitudinal dynamics of an aircraft. The design process includes 
+the development of a vertical speed guidance loop, integrated with an inner pitch rate controller, and an auto-throttle control loop for airspeed 
+management. The vertial speed loop utilizes a componsator to conver vertial speed error into a pitch rate command, while the inner pitch rate 
+controller provides finer pitch adjustments. The auto-throttle loop requires the system to regulate airspeed while maintaining the desired vertical 
+speed and would need an analysis of the cross-coupling effects of the system.
+
+This study utilizes MATLAB software, specifically using  System Identification Toolbox \cite{MATLAB-SYS-ID}, Control System Toolbox 
+\cite{MATLAB-CONTROL}, and Simulink Toolbox \cite{MATLAB-SIMULINK}, to model, design, and simulate the autopilot system. These tools facilitate the 
+identification of system dynamics and the development of control strategies based on theoretical models, which are then validated through time-domain 
+simulations. As discussed in the course materials by Boyang \citet{lectures}, MATLAB’s System Identification Toolbox is instrumental in deriving 
+accurate models for aircraft dynamics, while the Control System Toolbox aids in designing feedback controllers that meet stability and performance 
+requirements outlined by the scope of this project. 
+
 \section{Q1 -- Vertical Speed Transfer Function}
 To assess the feasibility of using the aircraft elevator ($\delta_e$) to directly control the vertical speed ($v_s$),
 the transfer function $G^{v_s}_{\delta_e}$ was determined.
