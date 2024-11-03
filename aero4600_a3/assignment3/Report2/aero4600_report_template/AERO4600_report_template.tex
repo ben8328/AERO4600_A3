@@ -168,7 +168,7 @@ the pitch rate controller to compute the required elevator deflection ($\delta_e
 \end{figure}
 
 
-\subsection{Aircraft Response to Vertical Speed Command}
+\subsection{Aircraft Response to Vertical Speed Command}\label{sec: q3b Vs response}
 The vertical speed response, in Figure \ref{fig:q3-vs response}, demonstrates the ability for the system's response to a 
 $500 ft/min$ ($2.54 m/s$) vertical speed step input command. 
 
@@ -181,10 +181,12 @@ $500 ft/min$ ($2.54 m/s$) vertical speed step input command.
 \end{figure}
 
 
-The response shows a rapid rise in vertical speed, reaching $9 m/s$ within the first 2 seconds, followed by a slight overshoot.
-The system then settles towards the target ($8.3 m/s$), acheiving steady state within about 10 seconds. This response meets the 
-desired design criteria, mainting a rise time of about 3 seconds and settling within 10-seconds.With no oscilations and a smooth 
-converence towards the command, and demonstrates the system's stability and damping in response to the vertical speed changes. 
+The vertical speed response, shown in Figure 2, demonstrates the system’s performance in tracking a 500 ft/min (approximately 2.54 m/s) 
+vertical speed command step input. The response shows a rapid increase in vertical speed, reaching close to the desired 2.5 m/s target 
+within the first 2 seconds. There is a slight overshoot beyond the target speed, followed by a gradual settling towards the reference 
+value, achieving stability within approximately 10 seconds. This response indicates that the system meets the rise time and settling 
+time requirements, effectively balancing speed of response with controlled damping. The smooth convergence to the command confirms 
+the system's capability to achieve accurate vertical speed tracking.
 
 
 \subsection{Pitch Rate Response}
@@ -197,8 +199,14 @@ The pitch rate response, shown in Figure \ref{fig:q3-pitch rate response}, refle
     \label{fig:q3-pitch rate response}
 \end{figure}
 
+The response showns a peak reaching $16 deg/s$, followed by a quick correction with minor oscillations betfore settling to zero. This 
+peak and correction indicate the controller's rapid adjustment to the pitch rate required to meet the vertical speed command of 
+$500 ft/min$ ($2.54 m/s$), as outlined in Section \ref{sec: q3b Vs response}. These damped oscillations demonstrate the pitch rate 
+controllers stability and responsiveness. 
+
 \subsection{Elevator Activity}
-The elevator control activity is analyzed to ensure that control actions remain within acceptable operational limits.
+Figure \ref{fig:q3-elevator activity} displays the control activity of the elevator in response to the inputted vertical speed command.
+
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.6\linewidth]{Figures/Elevator Control Activity -Q3.png}
@@ -206,6 +214,9 @@ The elevator control activity is analyzed to ensure that control actions remain 
     \label{fig:q3-elevator activity}
 \end{figure}
 
+The elevator intially deflects sharply to approximately $-2.3 degrees$ as the controller adjusts to acheive vertical speed command, 
+followed by the elevator deflection stabilizing back to zero, demonstrating its minimal effor reuired once the target vertial speed is 
+reached. 
 
 \newpage
 \section{Q4 -- Design Auto-Throttle Control System}
