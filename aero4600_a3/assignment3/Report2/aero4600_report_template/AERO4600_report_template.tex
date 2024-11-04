@@ -82,22 +82,22 @@
 \title{AERO4600 Automatic Flight Control Systems\\
 {\small Assignment 3 | 2024}}
 
-\author[UoNMCHA]{Ben Miller}
-\address[UoNMCHA]{
+\author[UoNMCHA1]{Ben Miller}
+\address[UoNMCHA1]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
 Student Number: c3328484 \\
 E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3328484@uon.edu.au}}}
 
-\author[UoNMCHA]{Jabez Mehanathan}
-\address[UoNMCHA]{
+\author[UoNMCHA2]{Jabez Mehanathan}
+\address[UoNMCHA2]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
 Student Number: c3355997 \\
 E-mail: \href{mailto:First.Last@uon.edu.au}{\textsf{c3355997@uon.edu.au}}}
 
-\author[UoNMCHA]{Kaitlyn Ashcroft}
-\address[UoNMCHA]{
+\author[UoNMCHA3]{Kaitlyn Ashcroft}
+\address[UoNMCHA3]{
 Student of Aerospace Systems Engineering,\\
 The University of Newcastle, Callaghan, NSW 2308, AUSTRALIA \\
 Student Number: c3350754  \\
@@ -138,11 +138,11 @@ control surfaces and actuators.
 
 This study aims to design and implement an autopilot system specifically for the longitudinal dynamics of an aircraft. The design process includes 
 the development of a vertical speed guidance loop, integrated with an inner pitch rate controller, and an auto-throttle control loop for airspeed 
-management. The vertial speed loop utilizes a componsator to conver vertial speed error into a pitch rate command, while the inner pitch rate 
+management. The vertial speed loop utilises a componsator to conver vertial speed error into a pitch rate command, while the inner pitch rate 
 controller provides finer pitch adjustments. The auto-throttle loop requires the system to regulate airspeed while maintaining the desired vertical 
 speed and would need an analysis of the cross-coupling effects of the system.
 
-This study utilizes MATLAB software, specifically using  System Identification Toolbox \cite{MATLAB-SYS-ID}, Control System Toolbox 
+This study utilises MATLAB software, specifically the System Identification Toolbox \cite{MATLAB-SYS-ID}, Control System Toolbox 
 \cite{MATLAB-CONTROL}, and Simulink Toolbox \cite{MATLAB-SIMULINK}, to model, design, and simulate the autopilot system. These tools facilitate the 
 identification of system dynamics and the development of control strategies based on theoretical models, which are then validated through time-domain 
 simulations. As discussed in the course materials by Boyang \citet{lectures}, MATLAB’s System Identification Toolbox is instrumental in deriving 
@@ -216,8 +216,8 @@ Where $C =\begin{bmatrix}
     \end{center}
 \end{figure}
 
-In order to design a controller to satisfy a bandwidth of $\omega_{c} = 2-10 rad/s$, noise bandwidth of 20 rad/s,
-overshoot within $2\%$ with settling time of around $3s$, it was determined that that system should
+In order to design a controller to satisfy a bandwidth of $\omega_{c}$ = 2 - 10 rad/s, noise bandwidth of 20 rad/s,
+and an overshoot within $2\%$ with a settling time of around 3$s$, it was determined that that system should
 have damping ratio ($\zeta$) of 0.78 and Phase Margin of approximately 69.\\
 
 A proportional integral derivative (PID) controller, with an additional pole, was implemented.
@@ -276,7 +276,7 @@ the pitch rate controller to compute the required elevator deflection ($\delta_e
 
 \subsection{Aircraft Response to Vertical Speed Command}\label{sec: q3b Vs response}
 The vertical speed response, in Figure \ref{fig:q3-vs response}, demonstrates the ability for the system's response to a 
-$500 ft/min$ ($2.54 m/s$) vertical speed step input command. 
+500 ft/min (2.54 m/s) vertical speed step input command. 
 
 
 \begin{figure}[ht!]
@@ -305,9 +305,9 @@ The pitch rate response, shown in Figure \ref{fig:q3-pitch rate response}, refle
     \label{fig:q3-pitch rate response}
 \end{figure}
 
-The response showns a peak reaching $16 deg/s$, followed by a quick correction with minor oscillations betfore settling to zero. This 
+The response showns a peak reaching 16 deg/s, followed by a quick correction with minor oscillations betfore settling to zero. This 
 peak and correction indicate the controller's rapid adjustment to the pitch rate required to meet the vertical speed command of 
-$500 ft/min$ ($2.54 m/s$), as outlined in Section \ref{sec: q3b Vs response}. These damped oscillations demonstrate the pitch rate 
+500 ft/min (2.54 m/s), as outlined in Section \ref{sec: q3b Vs response}. These damped oscillations demonstrate the pitch rate 
 controllers stability and responsiveness. 
 
 \subsection{Elevator Activity}
@@ -320,7 +320,7 @@ Figure \ref{fig:q3-elevator activity} displays the control activity of the eleva
     \label{fig:q3-elevator activity}
 \end{figure}
 
-The elevator intially deflects sharply to approximately $-2.3 degrees$ as the controller adjusts to acheive vertical speed command, 
+The elevator intially deflects sharply to approximately -2.3 degrees as the controller adjusts to acheive vertical speed command, 
 followed by the elevator deflection stabilizing back to zero, demonstrating its minimal effor reuired once the target vertial speed is 
 reached. 
 
@@ -359,9 +359,9 @@ The primary control effects, namely the transfer function of throttle to airspee
 
 
 These effects tend to follow a more sinusoidal pattern, reaching similar magnitudes over the simulation period. This is quite different from the responses found from solely the vertical speed control loop (in \ref{Loop_Topology}).
-The throttle is more effective in making airspeed changes be due to its direct affect on this output, coupled with the effects from the elevator control,although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop).
+The throttle is more effective in making airspeed changes be due to its direct affect on this output, coupled with the effects from the elevator control, although because of the increased complexity of the system it is more difficult to tune, and does not reach a stable point (like the outputs of the vertical speed control loop).
 
-The overall output of vertical speed and pitch rate (from both elevator and throttle control) however show a more similar trend to the vertical speed control loop, shown in Figures~\ref{fig:q4_vs_response} and \ref{fig:q4_q_response}, albeit with a longer settling time (i.e., not being controlled in the simulation time). Airspeed will not be compared as it is not explored in the vertical speed control loop, however it is included for completeness (\ref{fig:q4_u_response}).
+The overall output of vertical speed and pitch rate (from both elevator and throttle control) however show a more similar trend to the vertical speed control loop (shown in Figures~\ref{fig:q4_vs_response} and \ref{fig:q4_q_response}), albeit with a longer settling time (i.e., not being controlled in the simulation time). Airspeed will not be compared as it is not explored in the vertical speed control loop, however it is included for completeness (\ref{fig:q4_u_response}).
 
 \begin{figure}[ht!]
     \centering
@@ -388,7 +388,7 @@ The overall output of vertical speed and pitch rate (from both elevator and thro
 
 
 \subsection{Cross-coupling Control Effects}
-The cross-coupling control effects, namely the transfer function of throttle to vertical speed (($dt2vs$)), and elevator to airspeed ($de2u$), are shown in \ref{fig:cc_elevator_effect} and  \ref{fig:cc_throttle_effect}.
+The cross-coupling control effects, namely the transfer function of throttle to vertical speed (($dt2vs$)), and elevator to airspeed ($de2u$), are shown in Figures~\ref{fig:cc_elevator_effect} and  \ref{fig:cc_throttle_effect}.
 
 \begin{figure}[ht!]
     \centering
@@ -404,11 +404,11 @@ The cross-coupling control effects, namely the transfer function of throttle to 
     \label{fig:cc_throttle_effect}
 \end{figure}
 
-Again, compared to only the vertical speed control loop, these reponses are sinusoidal, and do not stabilise in the timeframe - showing the complexitities of cross looping.
+Again, compared to only the vertical speed control loop, these reponses are sinusoidal, and do not stabilise in the timeframe - highlighting the complexitities of cross looping.
 
 
 \subsection{Elevator and Throttle Response}
-The control activities of the elevator and throttle in response to the inputted vertical speed and airspeed commands are shown in Figures~\ref{fig:q4_elevator_activity} and \ref{fig:q4_throttle_activity}.
+The control activities of the elevator and throttle in response to the input vertical speed and airspeed commands are shown in Figures~\ref{fig:q4_elevator_activity} and \ref{fig:q4_throttle_activity}.
 The throttle folows a reasonable trend, appearing to begin stabilising at 50 seconds in response to the airspeed step input (although not having a stabilising effect on airspeed as seen in Figure~\ref{fig:dt2u}).
 The elevator seems to be more erratic, with a large initial deflection, and then no change for the simulation period. This may again be due to the cross coupling effects, and the increased complexity of the system.
 \begin{figure}[ht!]
@@ -428,7 +428,7 @@ The elevator seems to be more erratic, with a large initial deflection, and then
 \subsection{Auto-Throttle Effectiveness}
 The effectiveness of the auto throttle system without the vertical speed controller was explored, both with and without the pitch rate controller.
 It was discovered that the vertical speed controller is neccessary for non-erratic behaviour of airspeed, as seen in Figure~\ref{fig:airspeed_vscontrollerInactive}.
-Furthermore, deactivating vertical speed along with the pitch rate controller made the system unable to be simulated (perhaps due to being too unstable). The error is shown in Figure~\ref{fig:airspeed_vsqinactive}.
+However, deactivating vertical speed along with the pitch rate controller made the system unable to be simulated (perhaps due to being too unstable). The error is shown in Figure~\ref{fig:airspeed_vsqinactive}.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.6\linewidth]{Figures/airspeedresponse_vscontrollerInactive.png}
@@ -532,7 +532,8 @@ system's ability to maintain stability by optimising tracking performance and co
 
 \newpage
 \section{Conclusion}
-
+An autopilot system was designed and simulated for the longitudinal dynamics of an aircraft, meeting as many requirements as possible. The system focussed on controlling vertical speed using an auto-throttle. However, the cross coupled system was quite complex, presenting major challenges to the process of tuning and stabilisation. As a result, achieving the tracking of a specified vertical speed proved a challenge. Despite these challenges, it was discovered that the system could reduce gust-induced disturbances.
+In the future it would be beneficial to look into more advanced control strategies, such as model predictive control. Additionally, dedicating more time to the tuning process would also increase the chances of reaching system stability and meeting tracking requirements.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
